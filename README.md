@@ -1,6 +1,6 @@
 # Mapae Arcade assets
 
-Mapae Arcade에서 사용하는 이미지 113개와 캐릭터 착용 메타데이터를 메인 [Mapae 저장소](https://github.com/kooroot/Mapae)와 분리해 관리합니다. `arcade/` 아래의 경로는 `apps/web/public/arcade/`의 경로와 같습니다. `previews/`는 검토용 이미지이며 웹 배포 대상에 포함하지 않습니다.
+Mapae Arcade에서 사용하는 이미지 149개와 캐릭터 착용 메타데이터를 메인 [Mapae 저장소](https://github.com/kooroot/Mapae)와 분리해 관리합니다. `arcade/` 아래의 경로는 `apps/web/public/arcade/`의 경로와 같습니다. `previews/`는 검토용 이미지이며 웹 배포 대상에 포함하지 않습니다.
 
 메인 저장소를 빌드하거나 배포하기 전에 에셋을 복사하세요. 예를 들어 두 저장소가 같은 상위 디렉터리에 있다면:
 
@@ -15,7 +15,11 @@ test -f ../Mapae/apps/web/public/arcade/wardrobe/fit.json
 
 업데이트할 때는 이 저장소에서 `git pull --ff-only origin main`을 실행한 다음 검증과 복사를 반복합니다. `.git` 디렉터리를 웹의 `public/` 아래로 복사하지 마세요.
 
-메인 저장소의 CI는 `.github/workflows/ci.yml`에서 에셋 커밋을 고정합니다. 새 에셋을 사용하려면 해당 `ref`도 갱신해야 합니다. `SHA256SUMS`는 이미지 113개와 아래 착용 메타데이터를 함께 검증합니다.
+메인 저장소의 CI는 `.github/workflows/ci.yml`에서 에셋 커밋을 고정합니다. 새 에셋을 사용하려면 해당 `ref`도 갱신해야 합니다. `SHA256SUMS`는 이미지 149개와 아래 착용 메타데이터를 함께 검증합니다.
+
+## 2026-10-15 공유 카드용 레이어 PNG
+
+`arcade/share/` 아래 36장은 옷장(`wardrobe/*.webp`) 34장과 부적(`guardians/charm-*.webp`) 2장을 320px PNG(8비트 RGBA)로 변환한 것입니다. Cloudflare Worker가 공유 카드(1200 × 630 og:image)를 순수 JS로 합성할 때 WebP 디코더가 없어 이 PNG를 읽습니다. 원본 WebP가 바뀌면 메인 저장소의 `apps/web/scripts/share-layers.sh`로 다시 만들고 `CARD_REVISION`을 올립니다.
 
 ## 2026-10-10 흥정상회 엽전
 
